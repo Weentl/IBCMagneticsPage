@@ -28,27 +28,27 @@ const About = () => {
 
   const team = [
     {
-      name: 'Ing. Roberto Martínez',
-      position: 'Director General',
-      experience: '25 años en ingeniería magnética',
+      name: 'Nombre 1',
+      position: 'Puesto 1',
+      experience: 'Experiencia 1',
       image: 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=300'
     },
     {
-      name: 'Dra. Carmen López',
-      position: 'Directora Técnica',
-      experience: '20 años en investigación de materiales',
+      name: 'Nombre 2',
+      position: 'Puesto 2',
+      experience: 'Experiencia 2',
       image: 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=300'
     },
     {
-      name: 'Ing. Miguel Torres',
-      position: 'Gerente de Operaciones',
-      experience: '18 años en manufactura industrial',
+      name: 'Nombre 3',
+      position: 'Puesto 3',
+      experience: 'Experiencia 3',
       image: 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=300'
     },
     {
-      name: 'Ing. Ana Rodríguez',
-      position: 'Gerente de Ventas',
-      experience: '15 años en desarrollo de negocios',
+      name: 'Nombre 4',
+      position: 'Puesto 4',
+      experience: 'Experiencia 4',
       image: 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=300'
     }
   ];
