@@ -1,180 +1,184 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowRight, Filter } from 'lucide-react';
+import { ArrowRight, Filter, Tag, Layers, Gauge } from 'lucide-react'; // Importación de iconos de lucide-react
 
 const ProductsPreview = () => {
   const [activeFilter, setActiveFilter] = useState('todos');
 
+  // Definición de los filtros con sus respectivos iconos
   const filters = [
-    { id: 'todos', name: 'Todos los productos' },
-    { id: 'equipos', name: 'Equipos Magnéticos' },
-    { id: 'imanes', name: 'Imanes' },
-    { id: 'instrumentos', name: 'Instrumentos' },
+    { id: 'todos', name: 'Todos los productos', icon: <Filter size={18} /> },
+    { id: 'equipos', name: 'Equipos Magnéticos', icon: <Layers size={18} /> },
+    { id: 'imanes', name: 'Imanes', icon: <Tag size={18} /> },
+    { id: 'instrumentos', name: 'Instrumentos', icon: <Gauge size={18} /> },
   ];
 
+  // Datos de ejemplo de productos con imágenes placeholder profesionales
   const products = [
     {
       id: 1,
-      name: 'Rejillas Magnéticas',
+      name: 'Rejillas Magnéticas de Alta Potencia',
       category: 'equipos',
-      application: 'Separación de partículas ferrosas',
-      image: 'https://images.pexels.com/photos/1108101/pexels-photo-1108101.jpeg?auto=compress&cs=tinysrgb&w=400',
-      industries: ['Alimentos', 'Farmacéutica']
+      application: 'Separación eficiente de partículas ferrosas en flujos de material',
+      image: '/rejilla4-1-scaled.webp', // Imagen industrial, ajustado para fondo blanco
+      industries: ['Alimentos', 'Farmacéutica', 'Plásticos']
     },
     {
       id: 2,
-      name: 'Placas Magnéticas',
+      name: 'Placas Magnéticas Industriales',
       category: 'equipos',
-      application: 'Retención de metales ferrosos',
-      image: 'https://images.pexels.com/photos/8867482/pexels-photo-8867482.jpeg?auto=compress&cs=tinysrgb&w=400',
-      industries: ['Minería', 'Reciclaje']
+      application: 'Retención robusta de metales ferrosos en cintas transportadoras',
+      image: '/placa_magnetica3-1.webp',  // Imagen industrial, ajustado para fondo blanco
+      industries: ['Minería', 'Reciclaje', 'Química']
     },
     {
       id: 3,
-      name: 'Imanes de Neodimio',
+      name: 'Imanes de Ferrita',
       category: 'imanes',
-      application: 'Alta fuerza magnética',
-      image: 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=400',
-      industries: ['Automotriz', 'Electrónica']
+      application: 'Soluciones compactas magnética para diversas aplicaciones',
+      image: '/iman_Ferrita-1.webp', // Imagen abstracta/limpia, ajustado para fondo blanco
+      industries: ['Automotriz', 'Electrónica', 'Energías Renovables']
     },
     {
       id: 4,
-      name: 'Gaussímetros',
+      name: 'Gaussímetros Digitales de Precisión',
       category: 'instrumentos',
-      application: 'Medición de campo magnético',
-      image: 'https://images.pexels.com/photos/8867482/pexels-photo-8867482.jpeg?auto=compress&cs=tinysrgb&w=400',
-      industries: ['Laboratorio', 'Control de calidad']
+      application: 'Medición exacta de campos magnéticos para control de calidad y desarrollo',
+      image: '/gaussmeter-1.webp', // Imagen técnica, ajustado para fondo blanco
+      industries: ['Laboratorio', 'Control de Calidad', 'Investigación']
     },
     {
       id: 5,
-      name: 'Ablandadores Magnéticos',
+      name: 'Tambores Magnéticos',
       category: 'equipos',
-      application: 'Tratamiento de agua',
-      image: 'https://images.pexels.com/photos/1108101/pexels-photo-1108101.jpeg?auto=compress&cs=tinysrgb&w=400',
-      industries: ['Industrial', 'Residencial']
+      application: 'Extracción continua de contaminantes ferrosos en grandes volúmenes',
+      image: '/tambor_magnetico.webp',
+      industries: ['Granos', 'Cereales', 'Procesamiento de Minerales']
     },
     {
       id: 6,
-      name: 'Imanes Flexibles',
-      category: 'imanes',
-      application: 'Aplicaciones versátiles',
-      image: 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=400',
-      industries: ['Publicidad', 'Educación']
+      name: 'Bandas Magnéticas Transportadoras',
+      category: 'equipos',
+      application: 'Transporte y elevación de materiales ferrosos de forma segura',
+      image: 'https://placehold.co/400x250/F97316/262626?text=Bandas+Magneticas',
+      industries: ['Fabricación', 'Logística', 'Metalurgia']
     },
   ];
 
-  const filteredProducts = activeFilter === 'todos' 
-    ? products 
-    : products.filter(product => product.category === activeFilter);
+  // Lógica para filtrar y limitar los productos a mostrar (máximo 3 para la previsualización)
+  const filteredProducts = activeFilter === 'todos'
+    ? products.slice(0, 3) // Limita a 3 productos si no hay filtro activo
+    : products.filter(product => product.category === activeFilter).slice(0, 3); // Limita a 3 productos filtrados
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-white text-gray-900 font-inter"> {/* Fondo blanco para un look limpio */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-            Catálogo de
-            <span className="text-orange-500"> productos</span>
+        {/* Encabezado de la sección */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">
+            Descubra Nuestras
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-700"> {/* Ajuste de degradado */}
+              Soluciones Magnéticas Avanzadas
+            </span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-            Descubre nuestra amplia gama de soluciones magnéticas diseñadas 
-            para satisfacer las necesidades específicas de tu industria.
+          <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-8">
+            Explore una selección de nuestros equipos, imanes e instrumentos de alta ingeniería.
           </p>
         </div>
 
-        {/* Filters */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
+        {/* Controles de Filtro */}
+        <div className="flex flex-wrap justify-center gap-3 md:gap-4 mb-16">
           {filters.map((filter) => (
             <button
               key={filter.id}
               onClick={() => setActiveFilter(filter.id)}
-              className={`px-6 py-3 rounded-lg font-medium transition-all duration-200 ${
-                activeFilter === filter.id
-                  ? 'bg-orange-500 text-white shadow-lg'
-                  : 'bg-white text-gray-700 hover:bg-orange-50 hover:text-orange-600 shadow-sm'
-              }`}
+              className={`flex items-center px-5 py-2.5 rounded-full font-medium text-base transition-all duration-300 ease-in-out
+                ${activeFilter === filter.id
+                  ? 'bg-orange-600 text-white shadow-lg transform scale-105' // Estilo para filtro activo
+                  : 'bg-gray-200 text-gray-700 hover:bg-orange-100 hover:text-orange-700 hover:shadow-md' // Estilo para filtro inactivo
+                } focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-white`}
             >
+              {filter.icon && <span className="mr-2">{filter.icon}</span>} {/* Icono del filtro */}
               {filter.name}
             </button>
           ))}
         </div>
 
-        {/* Products Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        {/* Grid de Productos - Diseño Innovador */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-10 mb-16">
           {filteredProducts.map((product) => (
             <div
               key={product.id}
-              className="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden"
+              className="relative group rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200 bg-white"
             >
-              <div className="relative">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-48 object-cover"
-                />
-                <div className="absolute top-4 left-4">
-                  <span className="px-3 py-1 bg-orange-500 text-white text-xs font-medium rounded-full">
-                    {filters.find(f => f.id === product.category)?.name}
-                  </span>
-                </div>
-              </div>
-              
+              {/* Imagen del Producto */}
+              <img
+                src={product.image}
+                alt={product.name}
+                className="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-105"
+                // Fallback para la imagen en caso de error de carga
+                onError={(e) => { e.target.onerror = null; e.target.src = `https://placehold.co/400x288/F97316/262626?text=${encodeURIComponent(product.name.replace(/\s/g, '+'))}`; }}
+              />
+
+              {/* Contenido siempre visible */}
               <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">
                   {product.name}
                 </h3>
-                <p className="text-gray-600 mb-4">
+                <p className="text-gray-700 text-base leading-relaxed mb-4">
                   {product.application}
                 </p>
-                
-                <div className="mb-4">
-                  <p className="text-sm text-gray-500 mb-2">Industrias:</p>
-                  <div className="flex flex-wrap gap-2">
-                    {product.industries.map((industry, index) => (
-                      <span
-                        key={index}
-                        className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded"
-                      >
-                        {industry}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="flex justify-between items-center">
-                  <Link
-                    to={`/producto/${product.id}`}
-                    className="text-orange-500 font-medium hover:text-orange-600 transition-colors duration-200"
+                <div className="flex flex-col sm:flex-row gap-3 mt-4">
+                  <a
+                    href={`/producto/${product.id}`} // Enlace a la página de detalles del producto
+                    className="flex-1 inline-flex items-center justify-center px-6 py-3 bg-orange-600 text-white font-semibold rounded-lg hover:bg-orange-700 transition-colors duration-300 text-base"
                   >
-                    Ver detalles
-                  </Link>
+                    Ver Detalles
+                  </a>
                   <a
                     href="https://wa.me/5215512345678"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-4 py-2 bg-orange-500 text-white text-sm font-medium rounded-lg hover:bg-orange-600 transition-colors duration-200"
+                    className="flex-1 inline-flex items-center justify-center px-6 py-3 border border-orange-600 text-orange-600 font-semibold rounded-lg hover:bg-orange-600 hover:text-white transition-colors duration-300 text-base"
                   >
-                    Cotizar
+                    Cotizar Ahora
                   </a>
                 </div>
+              </div>
+
+              {/* Etiqueta de Categoría */}
+              <div className="absolute top-4 left-4">
+                <span className="px-4 py-1.5 bg-orange-600 text-white text-sm font-semibold rounded-full shadow-md">
+                  {filters.find(f => f.id === product.category)?.name}
+                </span>
               </div>
             </div>
           ))}
         </div>
 
-        {/* CTA */}
-        <div className="text-center">
-          <Link
-            to="/productos"
-            className="inline-flex items-center px-8 py-4 bg-orange-500 text-white font-semibold rounded-lg hover:bg-orange-600 transition-all duration-300 hover:scale-105 shadow-lg"
+        {/* Call to Action (CTA) al catálogo completo */}
+        <div className="text-center mt-12">
+          <a
+            href="/productos" // Enlace a la página de productos completa
+            className="inline-flex items-center px-10 py-4 bg-orange-600 text-white font-bold rounded-full hover:bg-orange-700 transition-all duration-300 hover:scale-105 shadow-xl text-lg"
           >
-            Ver catálogo completo
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </Link>
+            Explorar Catálogo Completo
+            <ArrowRight className="ml-3 h-6 w-6" />
+          </a>
         </div>
       </div>
+      {/* Estilos CSS personalizados para la fuente Inter */}
+      <style>
+        {`
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+        .font-inter {
+          font-family: 'Inter', sans-serif;
+        }
+        `}
+      </style>
     </section>
   );
 };
 
 export default ProductsPreview;
+
